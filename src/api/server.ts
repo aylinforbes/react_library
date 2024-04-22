@@ -1,12 +1,16 @@
+const token = "Bearer d0f4654c79ed95b66ab4472899a45242296e81083242be7b"
+
 export const server_calls = {
     get: async () => { 
         const response = await fetch(`https://library-app-urrd.onrender.com/api/books`,
         {
             method: 'GET',
-            mode: 'no-cors'
-            
-      
-
+            //mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'x-access-token': token
+            }
         });
 
         if (!response.ok){
@@ -20,8 +24,13 @@ create: async (data: any = {}) => {
     const response = await fetch(`https://library-app-urrd.onrender.com/api/books`,
     {
         method: 'POST',
-        mode: 'no-cors',
-        body: JSON.stringify(data)
+        mode: 'cors',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'x-access-token': token
+        }
 
     })
 
@@ -33,11 +42,16 @@ create: async (data: any = {}) => {
 },
 
 update: async (id: string, data:any = {}) => {
-    const response = await fetch(`https://library-app-urrd.onrender.com/api/books${id}`,
+    const response = await fetch(`https://library-app-urrd.onrender.com/api/books/${id}`,
     {
         method: 'POST',
-        mode: 'no-cors',
-        body: JSON.stringify(data)
+        mode: 'cors',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'x-access-token': token
+        }
 
     })
 
@@ -52,7 +66,12 @@ delete: async (id: string) => {
     const response = await fetch(`https://library-app-urrd.onrender.com/api/books/${id}`,
     {
         method: 'DELETE',
-        mode: 'no-cors'
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'x-access-token': token
+        }
         
 
     })
@@ -64,3 +83,5 @@ delete: async (id: string) => {
     return;
 },
 }
+
+  
